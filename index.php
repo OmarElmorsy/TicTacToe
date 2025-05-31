@@ -11,21 +11,9 @@
 
 <body class="vh-100">
   <!-- <div class="p-3 mb-2 bg-primary text-white">hallo on Tic Tac Toe game </div> -->
-
-  <div class="card w-100 h-50 bg-primary">
-    <div class="card-body">
-      <div id="tic_tac_toe_contaner_id">
-        <?php for ($i = 0; $i < 3; $i++): ?>
-          <div id="row<?= $i ?>" ">
-            <?php for ($y = 0; $y < 3; $y++): ?>
-              <div id=" box<?= $i . $y ?>" class="border border-2">
-              </div>
-            <?php endfor; ?>
-          </div>
-        <?php endfor; ?>
-    </div>
-  </div>
-  </div>
+  <?php require('header.php');?>
+  <?php require('main_componant.php');?>
+  <?php require('footer.php');?>
 
 
 </body>
