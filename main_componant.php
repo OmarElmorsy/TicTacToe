@@ -1,10 +1,11 @@
 <div class="main_componant w-100 bg-info d-flex justify-content-center align-items-center" style="height: 70%;">
 
-  <div class=" w-50 h-50 p-0 m-0">
-    <?php for ($row = 0; $row < 3; $row++): ?>
+  <div class=" w-50 h-50 p-0 m-0" id="tictacteo_contaner">
+    <?php for ($row = 1; $row <=3 ; $row++): ?>
       <div class="row w-100 bg-light border border-2 " style="height:calc(190px/3); ">
-        <?php for ($col = 0; $col < 3; $col++): ?>
-          <div class=" btn tretched-link col bg-dark border border-2" id="box<?= $row . $col ?>"></div>
+        <?php $column = $row + ($row * ($row-1));?>
+        <?php for ($col = $column ; $col < $column + 3; $col++): ?>
+          <div class=" btn tretched-link col bg-dark border border-2" id="box<?=$col ?>"></div>
         <?php endfor; ?>
       </div>
     <?php endfor; ?>
