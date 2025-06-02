@@ -3,7 +3,7 @@
   <div class=" w-50 h-50 p-0 m-0" id="tictacteo_contaner">
     <?php for ($row = 1; $row <=3 ; $row++): ?>
       <div class="row w-100 bg-light border border-2 " style="height:calc(190px/3); ">
-        <?php $column = $row + ($row * ($row-1));?>
+        <?php $column = 3* $row - 2;?>
         <?php for ($col = $column ; $col < $column + 3; $col++): ?>
           <div class=" btn tretched-link col bg-dark border border-2" id="box<?=$col ?>"></div>
         <?php endfor; ?>

@@ -10,7 +10,10 @@ $("#tictacteo_contaner").on("click", (e) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.icon);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Fetch error:", error);
       });
   }
 });

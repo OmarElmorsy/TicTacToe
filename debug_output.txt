@@ -1,0 +1,3 @@
+
+  $output = ob_get_clean(); // Get all output so far
+  file_put_contents('debug_output.txt', $output); // Save it to a file for inspection
