@@ -1,6 +1,17 @@
+icons_style = {
+  x: {
+    color: "#ff0000",
+  },
+  o: {
+    color: "#0000ff",
+  },
+};
+
 $("#tictacteo_contaner").on("click", (e) => {
-  if ($(e.target).hasClass("col")) {
-    box_id = e.target.id;
+  box = e.target;
+  if ($(box).hasClass("col") && $(box).html() == "") {
+    box_id = box.id;
+
     fetch("action.php", {
       method: "POST",
       headers: {
@@ -11,6 +22,7 @@ $("#tictacteo_contaner").on("click", (e) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        $(box).html(data.icon);
       })
       .catch((error) => {
         console.error("Fetch error:", error);

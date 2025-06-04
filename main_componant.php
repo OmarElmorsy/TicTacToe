@@ -1,21 +1,17 @@
 <div class="main_componant w-100 bg-info d-flex justify-content-center align-items-center" style="height: 70%;">
 
-  <div class=" w-50 h-50 p-0 m-0" id="tictacteo_contaner">
+  <div class=" w-50 h-50 p-1 m-0 " id="tictacteo_contaner">
     <?php for ($row = 1; $row <=3 ; $row++): ?>
-      <div class="row w-100 bg-light border border-2 " style="height:calc(190px/3); ">
+      <div class="row w-100 border border-2 m-1" style="height:calc(190px/3); ">
         <?php $column = 3* $row - 2;?>
         <?php for ($col = $column ; $col < $column + 3; $col++): ?>
-          <div class=" btn tretched-link col bg-dark border border-2" id="box<?=$col ?>"></div>
+          <div class=" btn tretched-link col bg-dark m-1 fs-4" style="color: red;" id="box<?=$col?>"></div>
         <?php endfor; ?>
       </div>
     <?php endfor; ?>
 
   </div>
 </div>
-
-
-
-
 
 
 
