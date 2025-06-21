@@ -22,12 +22,20 @@ $("#tictacteo_contaner").on("click", (e) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // console.log(data.icon);
         $(box).html(data.icon);
-        if (data.game_status["is_won"]) {
+        if (data.game_status["game_ended"]) {
+          title = "";
+          text = "";
+          if (data.game_status["won_player"] == 0) {
+            title = "No Winner";
+            text = "No player has won the game.";
+          } else {
+            title = "🎉 Player Wins!";
+            text = `Congratulations! Player ${data.game_status["won_player"]} has won the game.`;
+          }
           Swal.fire({
-            title: "Do you want to save the changes?",
-            showDenyButton: true,
+            title: title,
+            text: text,
             showCancelButton: true,
             confirmButtonText: "Play agin",
           }).then((result) => {

@@ -1,5 +1,4 @@
 <?php
-// $is_won = false;
 session_start();
 // session_unset();
 
@@ -9,10 +8,10 @@ if (!isset($_SESSION['x_postions'])) {
   $_SESSION['x_postions'] = [];
   $_SESSION['o_postions'] = [];
   $_SESSION['count_postions'] = 1;
-  $_SESSION['game_endd'] = ['won_player' => 0, 'is_won' => false];
+  $_SESSION['game_ended'] = ['won_player' => 0, 'game_ended' => false];
 
   add_postons_in_session($current_player, 'x_postions');
-  echo json_encode(['icon' => 'x', 'game_status' => $_SESSION['game_endd']]);
+  echo json_encode(['icon' => 'x', 'game_status' => $_SESSION['game_ended']]);
   exit;
 } else {
   if ($_SESSION['count_postions'] != 9) {
@@ -20,15 +19,15 @@ if (!isset($_SESSION['x_postions'])) {
       $_SESSION['count_postions']++;
       add_postons_in_session($current_player, 'o_postions');
 
-      if (count($_SESSION['o_postions']) >= 3)  is_won($_SESSION['o_postions'], 'o');
-      echo json_encode(['icon' => 'o', 'game_status' => $_SESSION['game_endd'], $_SESSION['o_postions']]);
+      if (count($_SESSION['o_postions']) >= 3)  is_won($_SESSION['o_postions'], 'o', $_SESSION['count_postions']);
+      echo json_encode(['icon' => 'o', 'game_status' => $_SESSION['game_ended'], $_SESSION['o_postions']]);
       exit;
     } else {
       $_SESSION['count_postions']++;
       add_postons_in_session($current_player, 'x_postions');
 
-      if (count($_SESSION['x_postions']) >= 3)  is_won($_SESSION['x_postions'], 'x');
-      echo json_encode(['icon' => 'x', 'game_status' => $_SESSION['game_endd'], $_SESSION['x_postions']]);
+      if (count($_SESSION['x_postions']) >= 3)  is_won($_SESSION['x_postions'], 'x', $_SESSION['count_postions']);
+      echo json_encode(['icon' => 'x', 'game_status' => $_SESSION['game_ended'], $_SESSION['x_postions']]);
       exit;
     }
   }
@@ -38,7 +37,7 @@ if (!isset($_SESSION['x_postions'])) {
 
 function add_postons_in_session($current_player, $postion_type)
 {
-  array_push($_SESSION[$postion_type], ['row' => (int)($current_player / 10), 'col' => $current_player % 10, 'box' => $current_player]);
+  array_push($_SESSION[$postion_type], ['row' => (int)($current_player / 10), 'col' => $current_player % 10]);
 }
 
 /* 
@@ -64,7 +63,7 @@ function add_postons_in_session($current_player, $postion_type)
 //   echo "Invalid request.";
 // }
 
-function  is_won($postions, $player)
+function  is_won($postions, $player, $boreder_count)
 {
   $is_won = false;
   $length = count($postions);
@@ -74,32 +73,33 @@ function  is_won($postions, $player)
 
         if ($postions[$i]['row'] == $postions[$j]['row'] && $postions[$j]['row'] == $postions[$k]['row']) {
           $is_won = true;
-      
+
           break;
         }
 
         if ($postions[$i]['col'] == $postions[$j]['col'] && $postions[$j]['col'] == $postions[$k]['col']) {
           $is_won = true;
-      
+
           break;
         }
 
         if (($postions[$i]['row'] == $postions[$i]['col']) && ($postions[$j]['row'] == $postions[$j]['col']) && ($postions[$k]['row'] == $postions[$k]['col'])) {
           $is_won = true;
-      
+
           break;
         }
 
         if (($postions[$i]['row'] + $postions[$i]['col'] == 4) && ($postions[$j]['row'] + $postions[$j]['col'] == 4) && ($postions[$k]['row'] + $postions[$k]['col'] == 4)) {
           $is_won = true;
-      
+
           break;
         }
       }
     }
   }
-  $_SESSION['game_endd']['won_player'] = $player;
-  $_SESSION['game_endd']['is_won'] = $is_won;
+
+  $_SESSION['game_ended']['won_player'] = $is_won ? $player : 0;
+  $_SESSION['game_ended']['game_ended'] = ($boreder_count == 9) ? true : $is_won;
 }
 
 
