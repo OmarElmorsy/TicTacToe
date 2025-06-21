@@ -46,8 +46,17 @@ $("#tictacteo_contaner").on("click", (e) => {
   }
 });
 
+function reset_game() {
+  $(".col").html("");
 
-
-function reset_game(){
-  $('.col').html('')
-} 
+  fetch("reset_game.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+}

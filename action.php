@@ -71,16 +71,28 @@ function  is_won($postions, $player)
   for ($i = 0; $i < $length; $i++) {
     for ($j = $i + 1; $j < $length; $j++) {
       for ($k = $j + 1; $k < $length; $k++) {
-        if ((($postions[$i]['row'] == $postions[$j]['row']) == $postions[$k]['row']) || (($postions[$i]['col'] == $postions[$j]['col']) == $postions[$k]['col'])) {
+
+        if ($postions[$i]['row'] == $postions[$j]['row'] && $postions[$j]['row'] == $postions[$k]['row']) {
           $is_won = true;
+      
           break;
         }
+
+        if ($postions[$i]['col'] == $postions[$j]['col'] && $postions[$j]['col'] == $postions[$k]['col']) {
+          $is_won = true;
+      
+          break;
+        }
+
         if (($postions[$i]['row'] == $postions[$i]['col']) && ($postions[$j]['row'] == $postions[$j]['col']) && ($postions[$k]['row'] == $postions[$k]['col'])) {
           $is_won = true;
+      
           break;
         }
-        if (($postions[$i]['box'] == 13 || $postions[$j]['box'] == 13 || $postions[$k]['box'] == 13) && ($postions[$i]['box'] == 22 || $postions[$j]['box'] == 22 || $postions[$k]['box'] == 22) && ($postions[$i]['box'] == 31 || $postions[$j]['box'] == 31 || $postions[$k]['box'] == 31)) {
+
+        if (($postions[$i]['row'] + $postions[$i]['col'] == 4) && ($postions[$j]['row'] + $postions[$j]['col'] == 4) && ($postions[$k]['row'] + $postions[$k]['col'] == 4)) {
           $is_won = true;
+      
           break;
         }
       }
@@ -88,8 +100,6 @@ function  is_won($postions, $player)
   }
   $_SESSION['game_endd']['won_player'] = $player;
   $_SESSION['game_endd']['is_won'] = $is_won;
-
-  // if($is_won) session_unset();
 }
 
 
