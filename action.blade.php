@@ -34,34 +34,10 @@ if (!isset($_SESSION['x_postions'])) {
 }
 
 
-
 function add_postons_in_session($current_player, $postion_type)
 {
   array_push($_SESSION[$postion_type], ['row' => (int)($current_player / 10), 'col' => $current_player % 10]);
 }
-
-/* 
-                                                solution for won 
-[11, 22, 33]
-[13, 22, 31]
-
-[11, 12, 13]
-[11, 21, 31]
-[12, 22, 32]
-
-
-[11, 12, 13]
-
-
-*/
-
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clicked'])) {
-
-// } else {
-//   print_r($_POST);
-//   echo "Invalid request.";
-// }
 
 function  is_won($postions, $player, $boreder_count)
 {
@@ -105,21 +81,8 @@ function  is_won($postions, $player, $boreder_count)
 
 
 
-// function arranging_postions($old_postions, $new_postion)
-// {
-//   $potions_arranged = [];
-//   $count = 0;
-//   if (count($old_postions) == 0) return [$new_postion];
-
-//   for ($i = 0; $i < count($old_postions); $i++) {
-//     if ($new_postion > $old_postions[$i]) {
-//       array_push($potions_arranged, $old_postions[$i]);
-//       $count++;
-//       continue;
-//     }
-//     break;
-//   }
-//   array_push($potions_arranged, $new_postion);
-
-//   return  array_merge($potions_arranged, array_slice($old_postions, $count));
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clicked'])) {
+// } else {
+//   print_r($_POST);
+//   echo "Invalid request.";
 // }

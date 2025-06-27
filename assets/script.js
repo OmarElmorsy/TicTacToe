@@ -9,10 +9,10 @@ icons_style = {
 
 $("#tictacteo_contaner").on("click", (e) => {
   box = e.target;
-  if ($(box).hasClass("col") && $(box).html() == "") {
+  if ($(box).hasClass("box") && $(box).html().trim() == "") {
     box_id = box.id;
 
-    fetch("action.php", {
+    fetch("action.blade.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -55,9 +55,9 @@ $("#tictacteo_contaner").on("click", (e) => {
 });
 
 function reset_game() {
-  $(".col").html("");
+  $(".box").html("");
 
-  fetch("reset_game.php", {
+  fetch("reset_game.blade.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
