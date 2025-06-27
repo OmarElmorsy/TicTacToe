@@ -21,6 +21,8 @@
 
 <body class="vh-100">
   <!-- <div class="p-3 mb-2 bg-primary text-white">hallo on Tic Tac Toe game </div> -->
+  <?php require('./assets/shaps.blade.php'); ?>
+  
   <?php require('header.blade.php'); ?>
   <?php require('main_componant.blade.php'); ?>
   <?php require('footer.blade.php'); ?>
